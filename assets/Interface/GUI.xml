@@ -1,0 +1,1601 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nifty>
+    <registerSound id="btnhover" filename="Sounds/songs/ButtonHover1.wav"/>
+    <registerSound id="btnclick" filename="Sounds/songs/ButtonClick.wav"/>
+    <registerSound id="backgroundMusic" filename="Sounds/songs/background.wav"/>
+    <useControls filename="nifty-default-controls.xml"/>
+    <useStyles filename="nifty-default-styles.xml"/>
+    <screen id="MainMenu" controller="viewmodel.MainMenu">
+        
+        
+        //MainMenu
+        <layer id="MainMenuLayer" childLayout="vertical" backgroundImage="Materials/Images/monopoly.jpg">
+            <panel id="MainMenuPanel" childLayout="vertical" width="373px" x="159px" y="210px" align="right" height="698px" visible="true">
+                <panel id="GPanel3" childLayout="absolute" width="196px" x="-1px" y="-1px" height="60.0px"/>
+                <image id="localbtn" filename="Materials/Images/Local.png" width="250.0px" align="center" height="80.0px" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="BtnLocalHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnLocalHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnLocalHover"></onEndHover>
+                        <onStartHover name="playSound" sound="btnhover"/>
+                        <onClick name="playSound" sound="btnclick"/>
+                    </effect>
+                    <image id="BtnLocalHover" filename="Materials/Images/LocalHover.png"/>
+                    <interact onClick="openLocal()"/>
+                </image>
+                <panel id="GPanel3" childLayout="absolute" width="196px" x="-1px" y="-1px" height="60.0px"/>
+                <image id="multiplayerbtn" filename="Materials/Images/Multiplayer.png" width="250.0px" align="center" height="80.0px" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="BtnMultiHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnMultiHover"></onStartHover>
+                        <onStartHover name="playSound" sound="btnhover"/>
+                        <onEndHover name="hide" targetElement="BtnMultiHover"></onEndHover>
+                        <onClick name="playSound" sound="btnclick"/>
+                    </effect>
+                    <image id="BtnMultiHover" filename="Materials/Images/MultiplayerHover.png"/>
+                    <interact onClick="openMultiplayer()"/>
+                </image>
+                <panel id="GPanel4" childLayout="absolute" width="50%" height="60.0px"/>
+                <image id="profilebtn" filename="Materials/Images/Profile.png" width="250.0px" align="center" height="80.0px" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="BtnProfileHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnProfileHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnProfileHover"></onEndHover>
+                        <onStartHover name="playSound" sound="btnhover"/>
+                        <onClick name="playSound" sound="btnclick"/>
+                    </effect>
+                    <image id="BtnProfileHover" filename="Materials/Images/ProfileHover.png"/>
+                    <interact onClick="openProfile()"/>
+                    
+                </image>
+                <panel id="GPanel5" childLayout="absolute" width="50%" height="60.0px"/>
+                <image id="creditsbtn" filename="Materials/Images/Credits.png" width="250.0px" align="center" height="80.0px" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="BtnCreditsHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnCreditsHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnCreditsHover"></onEndHover>
+                        <onStartHover name="playSound" sound="btnhover"/>
+                        <onClick name="playSound" sound="btnclick"/>
+                    </effect>
+                    <image id="BtnCreditsHover" filename="Materials/Images/CreditsHover.png"/>
+                </image>
+                <panel id="GPanel6" childLayout="absolute" width="50%" height="60.0px"/>
+                <image id="exitbtn" filename="Materials/Images/Exit.png" width="250.0px" align="center" height="80.0px" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="BtnExitHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnExitHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnExitHover"></onEndHover>
+                        <onStartHover name="playSound" sound="btnhover"/>
+                        <onClick name="playSound" sound="btnclick"/>
+                    </effect>
+                    <image id="BtnExitHover" filename="Materials/Images/ExitHover.png"/>
+                    <interact onClick="exitbtn()"/>
+                </image>
+            </panel>
+        </layer>
+        
+        //Local Playing
+        
+        <layer id="StartingLocalGame" childLayout="center" backgroundImage="Materials/Images/background2.png" visible="false">
+            <panel id="DefiningNumber" childLayout="horizontal" width="443px" style="nifty-panel-simple" height="49px" visible="true">
+                <control name="label" id="GLabel9" width="141px" x="11" y="1" valign="center" text="Number of Players" height="39px" font="aurulent-sans-16.fnt"/>
+                <panel id="GPanel31" childLayout="absolute" width="37px" height="20px"/>
+                <control name="dropDown" id="NumberOfPlayers" width="104px" valign="center" height="25px"/>
+                <panel id="GPanel32" childLayout="absolute" width="36px" height="31px"/>
+                <control name="button" id="Next" childLayout="center" width="112px" x="31" y="7" valign="center" label="Next" height="25px">
+                    <interact onClick="nextPanel()"/>
+                </control>
+            </panel>
+            
+            <panel id="StartingLocal" childLayout="horizontal" width="330px" style="nifty-panel-simple" height="257px" visible="false">
+                <panel id="GPanel34" childLayout="vertical" width="50%" height="100%">
+                    <panel id="GPanel36" childLayout="absolute" width="75px" height="20px"/>
+                    <control name="label" id="PlayerNum" width="100px" text="Player 1" height="25px" font="aurulent-sans-16.fnt"/>
+                    <panel id="GPanel37" childLayout="absolute" width="50%" height="20px"/>
+                    <control name="label" id="GLabel11" width="100px" text="Piece Colour" height="25px" font="aurulent-sans-16.fnt"/>
+                    <panel id="GPanel38" childLayout="absolute" width="50%" height="20px"/>
+                    <control name="label" id="GLabel12" width="100px" text="Picture" height="25px" font="aurulent-sans-16.fnt"/>
+                </panel>
+                <panel id="GPanel35" childLayout="vertical" width="50%" height="100%">
+                    <panel id="GPanel39" childLayout="absolute" width="50%" height="20px"/>
+                    <control name="textfield" id="playerName" width="100%"/>
+                    <panel id="GPanel40" childLayout="absolute" width="50%" height="18px"/>
+                    <control name="dropDown" id="pieceColor" width="100%"/>
+                    <panel id="GPanel41" childLayout="absolute" width="50%" height="18px"/>
+                    <panel id="GPanel43" childLayout="horizontal" width="149px" height="65px">
+                        <image id="LocalImg" filename="Materials/Images/Unknown.png" width="60px" x="16" y="20" height="53px"/>
+                        <control name="button" id="localImg" childLayout="center" width="81px" label="Change" height="24px">
+                            <interact onClick="btnBrowse()"/>
+                        </control>
+                    </panel>
+                    <control name="button" id="startBtn" childLayout="center" label="Next" align="center">
+                        <interact onClick="startLocal()"/>
+                    </control>
+                    <panel id="GPanel44" childLayout="absolute" width="50%" height="16px"/>
+                    <control name="button" id="backMenu()" childLayout="center" label="Back" align="center">
+                        <interact onClick="backMenu2()"/>
+                    </control>
+                </panel>
+            </panel>
+        </layer>
+        
+        //Player Profile
+        <layer id="ProfileLayer" childLayout="vertical">
+            <panel id="ProfilePanel" childLayout="vertical" width="100%" style="nifty-panel-simple" height="100%" backgroundImage="Materials/Images/background2.png" visible="false">
+                <image id="ProfilePic" filename="Materials/Images/Unknown.png" width="200px" align="center" height="200px"/>
+                <panel id="GPanel3" childLayout="absolute" width="161px" height="35px"/>
+                <control name="button" id="btnBrowse" childLayout="center" width="159px" label="Change" align="center" height="41px">
+                    <interact onClick="btnBrowse()"/>
+                </control>
+                <panel id="GPanel4" childLayout="absolute" width="50%" height="65px"/>
+                <image id="Name" filename="Materials/Images/Name.png" width="400px" align="center" height="80px"/>
+                <panel id="NameTextPnl" childLayout="absolute" width="50%" height="38px"/>
+                <control name="textfield" id="txtName" width="300px" align="center" height="33px"/>
+                <panel id="GPanel7" childLayout="absolute" width="50%" height="38px"/>
+                <image id="GamesPlayed" filename="Materials/Images/GamesPlayed.png" width="400px" align="center" height="80px"/>
+                <panel id="GPanel8" childLayout="absolute" width="50%" height="38px"/>
+                <control name="label" id="GamesPlayedLbl" width="250px" text="0" height="70px" font="aurulent-sans-16.fnt"/>
+                <panel id="GPanel9" childLayout="absolute" width="50%" height="38px"/>
+                <image id="GImage3" filename="Materials/Images/GamesWon.png" width="400px" align="center" height="80px"/>
+                <panel id="GPanel10" childLayout="absolute" width="50%" height="38px"/>
+                <control name="label" id="GamesWonLbl" width="250px" text="0" height="70px" font="aurulent-sans-16.fnt"/>
+                <panel id="GPanel11" childLayout="absolute" width="50%" height="38px"/>
+                <control name="button" id="btnSave" childLayout="center" width="200px" label="Save" align="center" height="50px">
+                    <interact onClick="btnSave()"/>
+                </control>
+            </panel>
+        </layer>
+        
+        //Player Profile Pic
+        <layer id="AvatarLayer" childLayout="center" visible="false" backgroundImage="Materials/Images/background2.png">
+            <panel id="GPanel12" childLayout="vertical" width="641px" x="1172" y="457" style="nifty-panel-simple" height="650px">
+                <panel id="GPanel13" childLayout="horizontal" width="100%" x="66" y="48" height="209px">
+                    <image id="Avatar1" filename="Materials/Images/Avatar/Avatar1.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(1)"/>
+                    </image>
+                    <panel id="GPanel14" childLayout="absolute" width="15px" height="58px"/>
+                    <image id="Avatar2" filename="Materials/Images/Avatar/Avatar2.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(2)"/>
+                    </image>
+                    <panel id="GPanel15" childLayout="absolute" width="15px" height="58px"/>
+                    <image id="Avatar3" filename="Materials/Images/Avatar/Avatar3.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(3)"/>
+                    </image>
+                </panel>
+                <panel id="GPanel16" childLayout="absolute" width="50%" height="10px"/>
+                <panel id="GPanel13" childLayout="horizontal" width="100%" x="66" y="48" height="209px">
+                    <image id="Avatar4" filename="Materials/Images/Avatar/Avatar4.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(4)"/>
+                    </image>
+                    <panel id="GPanel14" childLayout="absolute" width="15px" height="58px"/>
+                    <image id="Avatar5" filename="Materials/Images/Avatar/Avatar5.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(5)"/>
+                    </image>
+                    <panel id="GPanel15" childLayout="absolute" width="15px" height="58px"/>
+                    <image id="Avatar6" filename="Materials/Images/Avatar/Avatar6.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(6)"/>
+                    </image>
+                </panel>
+                <panel id="GPanel16" childLayout="absolute" width="50%" height="10px"/>
+                <panel id="GPanel13" childLayout="horizontal" width="100%" x="66" y="48" height="209px">
+                    <image id="Avatar7" filename="Materials/Images/Avatar/Avatar7.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(7)"/>
+                    </image>
+                    <panel id="GPanel14" childLayout="absolute" width="15px" height="58px"/>
+                    <image id="Avatar8" filename="Materials/Images/Avatar/Avatar8.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(8)"/>
+                    </image>
+                    <panel id="GPanel15" childLayout="absolute" width="15px" height="58px"/>
+                    <image id="Avatar9" filename="Materials/Images/Avatar/Avatar9.png" width="200px" height="200px">
+                        <interact onClick="avatarClk(9)"/>
+                    </image>
+                </panel>
+            </panel>
+        </layer>
+        
+        //Hosting Multiplayer
+        <layer id="Create/JoinRoom" childLayout="center" backgroundImage="Materials/Images/BackGroundBlack.png" visible="false">
+            //Create or Join room
+            <panel id="MultiplayerPanel" childLayout="center" width="50%" height="35%" visible="false">
+                <panel id="GPanel18" childLayout="vertical" width="331px" x="747" y="494" height="174px">
+                    <control name="button" id="CreateRoom" childLayout="center" width="180px" label="Create" align="center" height="60px">
+                        <interact onClick="createRoom()"/>
+                    </control>
+                    <panel id="GPanel19" childLayout="absolute" width="50%" height="30%"/>
+                    <control name="button" id="JoinRoom" childLayout="center" width="180px" label="Join" align="center" height="60px">
+                        <interact onClick="joinRoom()"/>
+                    </control>
+                    <panel id="GPanel19" childLayout="absolute" width="50%" height="30%"/>
+                    <control name="button" id="BackMenu" childLayout="center" width="180px" label="Back" align="center" height="60px">
+                        <interact onClick="backMenu()"/>
+                    </control>
+                </panel>
+            </panel>
+            //Option
+            <panel id="Room" childLayout="horizontal" width="389px" style="nifty-panel-simple" height="323px" visible="false">
+                <panel id="GPanel21" childLayout="vertical" width="50%" height="100%">
+                    <panel id="GPanel23" childLayout="absolute" width="50%" height="36px"/>
+                    <control name="label" id="GLabel3" width="102px" text="Port:" height="32px" font="aurulent-sans-16.fnt"/>
+                    <panel id="GPanel25" childLayout="absolute" width="50%" height="36px"/>
+                    <control name="label" id="GLabel4" width="100px" text="Password:" height="50px" font="aurulent-sans-16.fnt"/>
+                </panel>
+                <panel id="GPanel22" childLayout="vertical" width="50%" height="100%">
+                    <panel id="GPanel24" childLayout="absolute" width="50%" x="77" y="29" height="36px"/>
+                    <control name="textfield" id="txtPort" width="100%" height="32px"/>
+                    <panel id="GPanel26" childLayout="absolute" width="50%" height="36px"/>
+                    <control name="textfield" id="txtPassword" passwordChar="*" width="100%" height="32px"/>
+                    <panel id="GPanel27" childLayout="absolute" visible="false" width="131px" height="34px"/>
+                    <control name="button" id="buttonHost" childLayout="center" width="136px" align="center" height="42px">
+                        <interact onClick="buttonHost()"/>
+                    </control>
+                    <panel id="GPanel27" childLayout="absolute" visible="false" width="131px" height="34px"/>
+                    <control name="button" id="buttonBack" childLayout="center" label="Back" width="136px" align="center" height="42px">
+                        <interact onClick="buttonBack()"/>
+                    </control>
+                </panel>
+            </panel>
+            <panel id="HostingRoom" childLayout="vertical" width="472px" height="242px" style="nifty-panel-simple" visible="false">
+                    <panel id="Host" childLayout="overlay" width="100%" x="211" y="22" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="PlayerHost" childLayout="center" width="100px" text="Host" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="GPanel4" childLayout="absolute" width="430px" height="28px"/>
+                    <panel id="GPanel5" childLayout="overlay" width="100%" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="Player2" width="100px" text="Player1" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="GPanel6" childLayout="overlay" width="100%" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="Player3" width="100px" text="Player2" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="GPanel7" childLayout="overlay" width="100%" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="Player4" width="100px" text="Player3" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="StartGame" childLayout="vertical" width="100%" height="90px">
+                        <panel id="A" width="100%" height="10px"/>
+                         <control name="button" id="startGame" childLayout="center" width="100px" label="Start" align="center" height="30px">
+                             <effect>
+                                 <onClick name="playSound" sound="backgroundMusic"/>
+                             </effect>
+                             <interact onClick="startGame()"/>
+                         </control>
+                         <panel id="A" width="100%" height="10px"/>
+                         <control name="button" id="Back" childLayout="center" width="100px" label="Back" align="center" height="30px">
+                             <interact onClick="backMultiplayer()"/>
+                         </control>
+                    </panel>     
+                </panel>
+        </layer>
+    </screen>
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        <screen id="GUI" controller="Multiplayer.GameGUI">
+        //Buttons on the Bottom Side
+        <layer id="Bottom Buttons" childLayout="center">
+            <panel id="PressSpace" childLayout="overlay" valign="top" width="500px" height="80px" visible="true">
+                <image id="RollingImg" filename="Materials/Images/Roll.png" childLayout="overlay"/>
+            </panel>
+            <panel id="PressTab" childLayout="overlay" valign="top" width="400px" height="80px" visible="false">
+                <image id="TabImg" filename="Materials/Images/EndTurn.png" childLayout="overlay"/>
+            </panel>
+            <panel id="BottomButtons" childLayout="horizontal" width="100%" x="743" y="468" valign="bottom" height="96px" visible="true">
+                <image id="BtnTrade" filename="Materials/Images/Hotkeys.png" width="250px" height="80px" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="BtnTradeHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnTradeHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnTradeHover"></onEndHover>
+                    </effect>
+                    <image id="BtnTradeHover" filename="Materials/Images/HotkeysHover.png"/>
+                    <interact onClick="btnTrade()"/>
+                </image>
+                <panel id="GPanel2" childLayout="absolute" width="16px" height="30%"/>
+                
+                <image id="BtnBuild" filename="Materials/Images/Build.png" width="250px" height="80px" childLayout="overlay">
+                <effect>
+                        <onStartScreen name="hide" targetElement="BtnBuildHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnBuildHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnBuildHover"></onEndHover>
+                    </effect>
+                    <image id="BtnBuildHover" filename="Materials/Images/BuildHover.png"/>
+                    <interact onClick="btnBuild()"/>
+                </image>
+                <panel id="GPanel3" childLayout="absolute" width="16px" height="30%"/>
+                <image id="BtnSell" filename="Materials/Images/Sell.png" width="250px" height="80px" childLayout="overlay">
+                <effect>
+                        <onStartScreen name="hide" targetElement="BtnSellHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnSellHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnSellHover"></onEndHover>
+                    </effect>
+                    <image id="BtnSellHover" filename="Materials/Images/SellHover.png"/>
+                    <interact onClick="btnSell()"/>
+                </image>
+                <panel id="GPanel4" childLayout="absolute" width="16px" height="30%"/>
+                <image id="BtnMortgage" filename="Materials/Images/Mortgage.png" width="250px" height="80px" childLayout="overlay">
+                <effect>
+                        <onStartScreen name="hide" targetElement="BtnMortgageHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnMortgageHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnMortgageHover"></onEndHover>
+                    </effect>
+                    <image id="BtnMortgageHover" filename="Materials/Images/MortgageHover.png"/>
+                    <interact onClick="btnMortgage()"/>
+                </image>
+                <panel id="GPanel5" childLayout="absolute" width="16px" height="30%"/>
+                <image id="BtnRedeem" filename="Materials/Images/Redeem.png" width="250px" height="80px" childLayout="overlay">
+                <effect>
+                        <onStartScreen name="hide" targetElement="BtnRedeemHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnRedeemHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnRedeemHover"></onEndHover>
+                    </effect>
+                    <image id="BtnRedeemHover" filename="Materials/Images/RedeemHover.png"/>
+                    <interact onClick="btnRedeem()"/>
+                </image>
+                <panel id="GPanel6" childLayout="absolute" width="16px" height="30%"/>
+                <image id="BtnView" filename="Materials/Images/View.png" width="250px" height="80px" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="BtnViewHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="BtnViewHover"></onStartHover>
+                        <onEndHover name="hide" targetElement="BtnViewHover"></onEndHover>
+                    </effect>
+                    <image id="BtnViewHover" filename="Materials/Images/ViewHover.png"/>
+                    <interact onClick="btnView()"/>
+                </image>
+            </panel>
+        </layer>
+        
+         <layer id="TradeLayer" childLayout="absolute">
+            //When you click on Trade Button
+            <panel id="PanelTrade" childLayout="vertical" width="257px" x="0" y="713px" height="270px" visible="false">
+                <control name="button" id="Player3" childLayout="center" x="0" width="250px" y="662" height="80px">
+                    <interact onClick="btnTradePlayer(3)"/>  //Trade Button 3
+                </control>
+                <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                <control name="button" id="Player2" childLayout="center" width="250px" height="80px">
+                    <interact onClick="btnTradePlayer(2)"/> //Trade Button 2
+                </control>
+                <panel id="GPanel9" childLayout="absolute" width="50%" height="10px"/>
+                <control name="button" id="Player1" childLayout="center" width="250px" height="80px">
+                    <interact onClick="btnTradePlayer(1)"/> //Trade Button 1
+                </control>
+            </panel>
+            //When you click on View Button
+            <panel id="PanelView" childLayout="overlay" style="nifty-panel-simple" width="328px" x="1296" y="603" height = "374px" visible="false">
+                <image id="ViewClick" width="328px" x="1296" y="603" height="374px"/>
+            </panel>
+        </layer>
+        
+        //Sound Button
+        <layer childLayout="horizontal" id="Sound">
+            <panel id="panel" width="5%" height="20px" align="right" valign="top" padding="10px" childLayout="vertical" visibleToMouse="true">
+                 <panel id="panel" width="10%" height="20px" align="right" valign="top" padding="10px" childLayout="vertical" visibleToMouse="true">
+                    <image id="soundIcon" align="right" filename="Materials/Images/soundOn.png" height="50px" width="50px" visibleToMouse="true"> 
+                        <interact onClick="guiToggleSound()"/>
+                    </image>
+                 </panel>   
+            </panel>
+        </layer>
+        
+        //Players turn on the right side
+        <layer id="User Turn" childLayout="center">
+            <panel id="PlayerTurn" childLayout="vertical" width="260px" valign="center" align="right" height="561px" visible="true">
+                //User1 Data
+                <panel id="User1Turn" childLayout="absolute" width="100%" style="nifty-panel-simple" backgroundColor="#FFD700" height="25%" visible="false"/>
+                //User2 Data
+                <panel id="User2Turn" childLayout="absolute" width="100%" style="nifty-panel-simple" backgroundColor="#FFD700" height="25%" visible="false"/>
+                //User3 Data
+                <panel id="User3Turn" childLayout="absolute" width="100%" style="nifty-panel-simple" backgroundColor="#FFD700" height="25%" visible="false"/>
+                //User4 Data
+                <panel id="User4Turn" childLayout="absolute" width="100%" style="nifty-panel-simple" backgroundColor="#FFD700" height="25%" visible="false"/>
+            </panel>
+        </layer>
+        
+        //Players Information on the right side
+        <layer id="User Display" childLayout="center">
+            <panel id="AllUsers" childLayout="vertical" width="250px" valign="center" align="right" height="561px" visible="true">
+                //User1 Data
+                <panel id="User1" childLayout="absolute" width="100%" style="nifty-panel-simple" height="25%">
+                    <image id="User1Img" visible="true" filename="Materials/Images/Unknown.png" width="55px" x="1" y="3" height="55px"/>
+                    <panel id="PanelUser1Name" childLayout="overlay" visible="true" width="180px" x="59" y="6" style="nifty-panel-simple" height="27px">
+                        <control name="label" id="User1Name" width="70px" x="86" y="10" text="Name" height="27px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User1Flag" visible="true" filename="Materials/Images/Egypt.png" width="31%" x="64" y="38" height="30%"/>
+                    <image id="Image1" visible="true" filename="Materials/Images/Dollar.png" width="19px" x="3" y="85" height="27px"/>
+                    <panel id="GPanel10" childLayout="overlay" visible="true" width="55%" x="27" y="80" style="nifty-panel-simple" height="30%">
+                        <control name="label" id="User1Money" width="86px" x="36" y="14" text="1500" height="25px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User1MoneyImg" visible="false" width="40px" x="175" y="70" height="60px"/>
+                </panel>
+                //User2 Data
+                <panel id="User2" childLayout="absolute" width="100%" style="nifty-panel-simple" height="25%">
+                    <image id="User2Img" visible="true" filename="Materials/Images/Unknown.png" width="55px" x="1" y="3" height="55px"/>
+                    <panel id="GPanel8" childLayout="overlay" visible="true" width="180px" x="59" y="6" style="nifty-panel-simple" height="27px">
+                        <control name="label" id="User2Name" width="70px" x="86" y="10" text="Name" height="27px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User2Flag" visible="true" filename="Materials/Images/Egypt.png" width="31%" x="64" y="38" height="30%"/>
+                    <image id="GImage1" visible="true" filename="Materials/Images/Dollar.png" width="19px" x="3" y="85" height="27px"/>
+                    <panel id="GPanel10" childLayout="overlay" visible="true" width="55%" x="27" y="80" style="nifty-panel-simple" height="30%">
+                        <control name="label" id="User2Money" width="86px" x="36" y="14" text="1500" height="25px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User2MoneyImg" visible="false" width="40px" x="175" y="70" height="60px"/>
+                </panel>
+                //User3 Data
+                <panel id="User3" childLayout="absolute" width="100%" style="nifty-panel-simple" height="25%">
+                    <image id="User3Img" visible="true" filename="Materials/Images/Unknown.png" width="55px" x="1" y="3" height="55px"/>
+                    <panel id="GPanel8" childLayout="overlay" visible="true" width="180px" x="59" y="6" style="nifty-panel-simple" height="27px">
+                        <control name="label" id="User3Name" width="70px" x="86" y="10" text="Name" height="27px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User3Flag" visible="true" filename="Materials/Images/Egypt.png" width="31%" x="64" y="38" height="30%"/>
+                    <image id="GImage1" visible="true" filename="Materials/Images/Dollar.png" width="19px" x="3" y="85" height="27px"/>
+                    <panel id="GPanel10" childLayout="overlay" visible="true" width="55%" x="27" y="80" style="nifty-panel-simple" height="30%">
+                        <control name="label" id="User3Money" width="86px" x="36" y="14" text="1500" height="25px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User3MoneyImg" visible="false" width="40px" x="175" y="70" height="60px"/>
+                </panel>
+                //User4 Data
+                <panel id="User4" childLayout="absolute" width="100%" style="nifty-panel-simple" height="25%">
+                    <image id="User4Img" visible="true" filename="Materials/Images/Unknown.png" width="55px" x="1" y="3" height="55px"/>
+                    <panel id="GPanel8" childLayout="overlay" visible="true" width="180px" x="59" y="6" style="nifty-panel-simple" height="27px">
+                        <control name="label" id="User4Name" width="70px" x="86" y="10" text="Name" height="27px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User4Flag" visible="true" filename="Materials/Images/Egypt.png" width="31%" x="64" y="38" height="30%"/>
+                    <image id="GImage1" visible="true" filename="Materials/Images/Dollar.png" width="19px" x="3" y="85" height="27px"/>
+                    <panel id="GPanel10" childLayout="overlay" visible="true" width="55%" x="27" y="80" style="nifty-panel-simple" height="30%">
+                        <control name="label" id="User4Money" width="86px" x="36" y="14" text="1500" height="25px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                    <image id="User4MoneyImg" visible="false" width="40px" x="175" y="70" height="60px"/>
+                </panel>
+            </panel>
+        </layer>
+        
+        //Trading Panel
+        <layer id="Trade" childLayout="center">
+            <panel id="MainPanel" childLayout="horizontal" backgroundImage= "Materials/Images/EEEE.png" width="1455px" x="128" y="-114" style="nifty-panel-simple" height="745px" visible="false">
+                <panel id="PlayerOnePanel" childLayout="vertical" width="655px" x="190" y="38" height="100%">
+                    <panel id="GPanel6" childLayout="absolute" width="665px" height="10px"/>
+                    <image id="GImage0" filename="Materials/Images/Unknown.png" width="66px" align="center" height="70px"/>
+                    <panel id="GPanel7" childLayout="absolute" width="665px" height="12px"/>
+                    <control name="label" id="GLabel0" width="414px" text="Player" height="37px" font="aurulent-sans-16.fnt"/>
+                    <panel id="GPanel8" childLayout="vertical" width="100%" height="564px">
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropOneImg1" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_1" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_1" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_1" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_1" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_1" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_1" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(1)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg2" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_2" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_2" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_2" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_2" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_2" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_2" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(2)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg3" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_3" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_3" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_3" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_3" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_3" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_3" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(3)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg4" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_4" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_4" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_4" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_4" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_4" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_4" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(4)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg5" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_5" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_5" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_5" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_5" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_5" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_5" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(5)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg6" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_6" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_6" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_6" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_6" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_6" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_6" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(6)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg7" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_7" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_7" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_7" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_7" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_7" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_7" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(7)"/>
+                            </image>
+                        </panel>
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel8" childLayout="vertical" width="100%" height="564px">
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropOneImg8" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_8" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_8" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_8" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_8" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_8" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_8" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(8)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg9" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_9" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_9" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_9" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_9" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_9" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_9" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(9)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg10" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_10" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_10" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_10" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_10" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_10" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_10" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(10)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg11" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_11" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_11" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_11" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_11" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_11" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_11" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(11)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg12" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_12" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_12" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_12" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_12" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_12" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_12" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(12)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg13" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_13" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_13" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_13" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_13" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_13" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_13" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(13)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg14" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_14" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_14" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_14" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_14" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_14" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_14" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(14)"/>
+                            </image>
+                        </panel>
+                        
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropOneImg15" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_15" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_15" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_15" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_15" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_15" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_15" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(15)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg16" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_16" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_16" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_16" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_16" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_16" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_16" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(16)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg17" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_17" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_17" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_17" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_17" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_17" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_17" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(17)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg18" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_18" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_18" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_18" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_18" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_18" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_18" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(18)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg19" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_19" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_19" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_19" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_19" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_19" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_19" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(19)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg20" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_20" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_20" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_20" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_20" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_20" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_20" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(20)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg21" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_21" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_21" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_21" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_21" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_21" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_21" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(21)"/>
+                            </image>
+                        </panel>
+                        
+                        
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropOneImg22" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_22" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_22" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_22" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_22" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_22" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_22" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(22)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg23" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_23" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_23" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_23" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_23" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_23" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_23" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(23)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg24" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_24" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_24" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_24" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_24" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_24" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_24" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(24)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg25" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_25" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_25" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_25" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_25" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_25" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_25" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(25)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg26" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_26" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_26" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_26" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_26" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_26" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_26" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(26)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg27" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_27" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_27" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_27" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_27" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_27" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_27" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(27)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg28" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_28" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_28" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_28" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_28" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_28" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_28" width="60px" x="13" y="40" height="20px" filename="Materials/Images/Arrow.png" visible="false"/>
+                                <interact onClick="propOneClick(28)"/>
+                            </image>
+                        </panel>
+                        
+                        
+                        </panel>
+                    </panel>
+                </panel>
+                <panel id="ChoicesPanel" childLayout="vertical" visible="true" width="10%" x="1123" y="547" height="100%">
+                    <panel id="GPanel4" childLayout="absolute" width="50%" height="290px"/>
+                    <control name="button" id="btnOffer" childLayout="center" width="135px" label="Offer" height="48px">
+                        <interact onClick="btnOffer()"/>
+                    </control>
+                    <panel id="GPanel5" childLayout="absolute" width="50%" height="61px"/>
+                    <control name="button" id="btnCancel" childLayout="center" width="135px" label="Cancel" height="48px">
+                        <interact onClick="btnCancel()"/>
+                    </control>
+                </panel>
+                <panel id="PlayerTwoPanel" childLayout="vertical" width="655px" height="100%">
+                    <panel id="GPanel6" childLayout="absolute" width="665px" height="10px"/>
+                    <image id="GImage0" filename="Materials/Images/Unknown.png" width="66px" align="center" height="70px"/>
+                    <panel id="GPanel7" childLayout="absolute" width="665px" height="12px"/>
+                    <control name="label" id="GLabel0" width="414px" text="Player" height="37px" font="aurulent-sans-16.fnt"/>
+                    <panel id="GPanel8" childLayout="vertical" width="100%" height="564px">
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropTwoImg1" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House1_2" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_3" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_1" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_4" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_1" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_1" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(1)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropTwoImg2" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_2" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_2" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_2" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_2" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_2" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_2" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(2)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropTwoImg3" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_3" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_3" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_3" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_3" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_3" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_3" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(3)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg4" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_4" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_4" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_4" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_4" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_4" width="35px" x="23" y="1" height="35px"/>
+                                <image id="Arrow_4" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(4)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropTwoImg5" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_5" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_5" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_5" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_5" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_5" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_5" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(5)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg2" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_6" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_6" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_6" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_6" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_6" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_6" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(6)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg7" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_7" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_7" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_7" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_7" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_7" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_7" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(7)"/>
+                            </image>
+                        </panel>
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel8" childLayout="vertical" width="100%" height="564px">
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropTwoImg8" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_8" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_8" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_8" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_8" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_8" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_8" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(8)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropTwoImg9" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_9" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_9" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_9" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_9" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_9" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_9" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(9)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropTwoImg10" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_10" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_10" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_10" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_10" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_10" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_10" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(10)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg11" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_11" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_11" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_11" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_11" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_11" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_11" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(11)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropTwoImg12" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_12" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_12" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_12" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_12" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_12" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_12" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(12)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg13" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_13" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_13" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_13" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_13" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_13" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_13" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(13)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg14" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_14" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_14" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_14" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_14" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_14" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_14" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(14)"/>
+                            </image>
+                        </panel>
+                        
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropTwoImg15" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_15" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_15" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_15" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_15" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_15" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_15" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(15)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropTwoImg16" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_16" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_16" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_16" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_16" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_16" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_16" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(16)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropTwoImg17" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_17" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_17" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_17" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_17" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_17" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_17" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(17)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg18" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_18" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_18" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_18" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_18" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_18" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_18" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(18)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropTwoImg19" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_19" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_19" width="15px" x="41px" y="13px" height="15px"/>
+                                <image id="House1_19" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_19" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_19" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_19" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(19)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg20" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_20" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_20" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_20" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_20" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_20" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_20" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(20)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg21" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_21" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_21" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_21" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_21" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_21" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_21" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(21)"/>
+                            </image>
+                        </panel>
+                        
+                        
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropTwoImg22" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_22" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_22" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_22" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_22" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_22" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_22" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(22)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropTwoImg23" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_23" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_23" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_23" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_23" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_23" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_23" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(23)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropTwoImg24" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_24" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_24" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_24" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_24" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_24" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_24" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(24)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg25" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_25" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_25" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_25" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_25" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_25" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_25" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(25)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropTwoImg26" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_26" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_26" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_26" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_26" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_26" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_26" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(26)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg27" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_27" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_27" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_27" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_27" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_27" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_27" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(27)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropTwoImg28" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_28" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_28" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_28" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_28" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_28" width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Arrow_28" width="60px" x="13" y="40" height="20px" filename="Materials/Images/ArrowInverted.png" visible="false"/>
+                                <interact onClick="propTwoClick(28)"/>
+                            </image>
+                        </panel>
+                        
+                        
+                        </panel>
+                    </panel>
+                </panel>
+            </panel>
+        </layer>
+        
+        //Cards Or Options as Build or Sell Or Mort or Redeem
+        <layer id="Cards/Options" childLayout="center">
+            //Community Chest or 
+            <panel id="Cards" childLayout="vertical" backgroundColor="#33ccffff" width="700px" x="984" y="535" style="nifty-panel-simple" height="438px" visible="false">
+                <panel id="GPanel11" childLayout="absolute" width="850px" height="27px"/>
+                <image id="Chest/Chance" width="31%" align="center" height="30%"/> //Chest or Chance Image
+                <panel id="GPanel12" childLayout="absolute" width="50%" height="35px"/>
+                <panel id="GPanel11" childLayout="overlay" width="100%" height="236px">
+                    <control name="label" id="CardText" width="642px" wrap="true" height="37px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                </panel>
+            </panel>
+            
+            //Build or Sell or Mort or Redeem
+            <panel id="Options" childLayout="vertical" width="655px" valign="center" x="190" y="38" height="670px" backgroundImage= "Materials/Images/EEEE.png" style="nifty-panel-simple" visible="false">
+                    <panel id="GPanel6" childLayout="absolute" width="665px" height="10px"/>
+                    <panel id="GPanel8" childLayout="vertical" width="100%" height="564px">
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" height="139px">
+                            <image id="PropOneImg1" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_1" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_1" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_1" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_1" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_1"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_1" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(1)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg2" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_2" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_2" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_2" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_2" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_2"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_2" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(2)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg3" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_3" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_3" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_3" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_3" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_3"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_3" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(3)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg4" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_4" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_4" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_4" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_4" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_4"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_4" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(4)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg5" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_5" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_5" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_5" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_5" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_5"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_5" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(5)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg6" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_6" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_6" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_6" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_6" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_6"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_6" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(6)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg7" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_7" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_7" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_7" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_7" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_7"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_7" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(7)"/>
+                            </image>
+                        </panel>
+                        
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropOneImg8" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_8" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_8" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_8" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_8" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_8"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_8" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(8)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg9" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_9" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_9" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_9" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_9" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_9"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_9" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(9)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg10" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_10" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_10" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_10" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_10" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_10"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_10" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(10)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg11" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_11" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_11" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_11" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_11" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_11"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_11" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(11)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg12" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_12" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_12" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_12" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_12" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_12"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_12" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(12)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg13" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_13" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_13" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_13" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_13" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_13"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_13" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(13)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg14" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_14" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_14" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_14" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_14" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_14"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_14" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(14)"/>
+                            </image>
+                        </panel>
+                        
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropOneImg15" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_15" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_15" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_15" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_15" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_15"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_15" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(15)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg16" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_16" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_16" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_16" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_16" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_16"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_16" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(16)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg17" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_17" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_17" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_17" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_17" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_17"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_17" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(17)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg18" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_18" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_18" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_18" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_18" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_18"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_18" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(18)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg19" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_19" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_19" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_19" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_19" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_19"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_19" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(19)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg20" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_20" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_20" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_20" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_20" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_20"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_20" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(20)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg21" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_21" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_21" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_21" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_21" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_21"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_21" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(21)"/>
+                            </image>
+                        </panel>
+                        
+                        
+                        <panel id="GPanel8" childLayout="absolute" width="50%" height="10px"/>
+                        <panel id="GPanel9" childLayout="horizontal" width="100%" x="374" y="66" height="139px">
+                            <image id="PropOneImg22" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_22" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_22" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_22" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_22" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_22"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_22" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(22)"/>
+                            </image>
+                            <panel id="GPanel13" childLayout="absolute" width="14px" height="23px"/>
+                            <image id="PropOneImg23" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_23" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_23" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_23" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_23" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_23"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_1" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(23)"/>
+                            </image>
+                            <panel id="GPanel14" childLayout="absolute" width="14px" height="32px"/>
+                            <image id="PropOneImg24" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_24" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_24" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_24" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_24" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_24"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_24" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(24)"/>
+                            </image>
+                            <panel id="GPanel15" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg25" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_25" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_25" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_25" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_25" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_25"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_25" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(25)"/>
+                            </image>
+                            <panel id="GPanel16" childLayout="absolute" width="14px" height="37px"/>
+                            <image id="PropOneImg26" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_26" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_26" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_26" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_26" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_26"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_26" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(26)"/>
+                            </image>
+                            <panel id="GPanel17" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg27" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_27" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_27" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_27" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_27" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_27"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_27" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(27)"/>
+                            </image>
+                            <panel id="GPanel18" childLayout="absolute" width="14px" height="30%"/>
+                            <image id="PropOneImg28" width="80px" height="100%" childLayout="absolute" filename="Materials/Images/Trade/EmptyTrade.png" visible="false">
+                                <image id="House2_28" width="15px" x="23" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House3_28" width="15px" x="41px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House1_28" width="15px" x="5" y="13" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="House4_28" width="15px" x="59px" y="13px" height="15px" filename="Materials/Images/House.png" visible="false"/>
+                                <image id="Hotel_28"  width="35px" x="23" y="1" height="35px" filename="Materials/Images/Hotel.png" visible="false"/>
+                                <image id="Selected_28" width="20px" x="30" y="1" height="20px" filename="Materials/Images/Selected.png" visible="false"/>
+                                <interact onClick="optionsBtn(28)"/>
+                            </image>
+                        </panel>
+                        
+                        
+                        </panel>
+                    <panel id="GPanel18" childLayout="absolute" width="14px" height="15px"/>
+                    <control name="button" id="btnOption" childLayout="center" width="135px" height="48px" align="center">
+                        <interact onClick="btnOption()"/>
+                    </control>
+            </panel>
+        </layer>
+        
+        //When a player buys a property
+        <layer id="BoughtLayer" childLayout="center">
+            <panel id="BoughtPanel" childLayout="horizontal" width="1254px" x="836" y="418" valign="center" style="nifty-panel-simple" height="727px" visible="false">
+                <panel id="GPanel2" childLayout="overlay" width="50%" x="303" y="175" height="100%">
+                    <image id="boughtCard" width="31%" height="30%"/>
+                </panel>
+                <panel id="GPanel3" childLayout="horizontal" width="50%" height="100%">
+                    <image id="ArrowImage" filename="Materials/Images/Arrow.png" width="217px" x="115" y="409" valign="center" height="199px"/>
+                    <panel id="GPanel5" childLayout="vertical" width="350px" height="700px">
+                        <panel id="GPanel6" childLayout="center" width="100%" height="220px">
+                            <image id="priceImg" width="250px" x="219" y="100" height="80px"/>
+                        </panel>
+                        <image id="BoughtUserImg" width="167px" filename="Materials/Images/Unknown.png" align="center" height="164px"/>
+                        <panel id="GPanel7" childLayout="absolute" width="483px" height="40px"/>
+                        <control name="label" id="boughtUserName" width="100%" text="Name" height="47px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                </panel>
+            </panel>
+        </layer>
+        
+        //When a player Goes to jail
+        <layer id="JailedLayer" childLayout="center">
+            <panel id="JailedPanel" childLayout="horizontal" width="1254px" x="836" y="418" valign="center" style="nifty-panel-simple" height="727px" visible="false">
+                <panel id="GPanel2" childLayout="center" width="50%" x="303" y="175" height="100%">
+                    <image id="JailedCard" width="400px" height="400px" filename="Materials/Images/Jail.jpg"/>
+                </panel>
+                <panel id="GPanel3" childLayout="horizontal" width="50%" height="100%">
+                    <image id="ArrowImage" filename="Materials/Images/ArrowInverted.png" width="217px" x="115" y="409" valign="center" height="199px"/>
+                    <panel id="GPanel5" childLayout="vertical" width="350px" height="700px">
+                        <panel id="GPanel6" childLayout="center" width="100%" height="220px"/>
+                        <image id="jailedUserImg" width="167px" filename="Materials/Images/Unknown.png" align="center" height="167px"/>
+                        <panel id="GPanel7" childLayout="absolute" width="483px" height="40px"/>
+                        <control name="label" id="jailedUserName" width="100%" text="Name" height="47px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                    </panel>
+                </panel>
+            </panel>
+        </layer>
+        
+        //When a play Redeems a property
+        <layer id="UnmortgagedLayer" childLayout="center">
+            <panel id="BoughtPanel" childLayout="horizontal" width="1254px" x="836" y="418" valign="center" style="nifty-panel-simple" height="727px" visible="false">
+                <panel id="GPanel2" childLayout="overlay" width="50%" x="303" y="175" height="100%">
+                    <image id="redeemedPropCard" width="31%" height="30%"/>
+                </panel>
+                <panel id="GPanel3" childLayout="horizontal" width="50%" height="100%">
+                    <image id="Arrow" filename="Materials/Images/ArrowInverted.png" width="217px" x="115" y="409" valign="center" height="199px"/>
+                    <panel id="GPanel5" childLayout="vertical" width="350px" height="700px">
+                        <panel id="GPanel6" childLayout="center" width="100%" height="220px">
+                            <image id="PriceImg" filename="Materials/Images/UnMortgaged.png" width="250px" x="219" y="100" height="80px"/>
+                        </panel>
+                        <image id="redeemUserImg" width="167px" filename="Materials/Images/Unknown.png" align="center" height="164px"/>
+                        <panel id="GPanel7" childLayout="absolute" width="483px" height="99px"/>
+                        <control name="label" id="redeemUserName" width="100%" text="Name" height="47px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                </panel>
+            </panel>
+        </layer>
+        
+        //When Auction button is pressed
+        <layer id="Bidding" childLayout="center">
+            <panel id="AuctionPanel" childLayout="horizontal" backgroundImage= "Materials/Images/BackGroundBlack.png" style="nifty-panel-simple" width="944px" height="484px" visible="false">
+                <panel id="GPanel1" childLayout="overlay" width="50%" style="nifty-panel-simple" height="100%">
+                    <image id="auctionedProp" width="424px" height="521px"/>
+                </panel>
+                <panel id="GPanel2" childLayout="vertical" width="50%" height="100%">
+                    <panel id="Bidding" childLayout="overlay" width="100%" x="211" y="22" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="biddingPlayer" childLayout="center" width="100px" text="IS BIDDING" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="GPanel4" childLayout="absolute" width="430px" height="28px"/>
+                    <panel id="GPanel5" childLayout="overlay" width="100%" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="biddingPlayer1" width="100px" text="GLabel1" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="GPanel6" childLayout="overlay" width="100%" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="biddingPlayer2" width="100px" x="230" y="15" text="GLabel2" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="GPanel7" childLayout="overlay" width="100%" style="nifty-panel-simple" height="30px">
+                        <control name="label" id="biddingPlayer3" width="100px" text="GLabel3" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="GPanel8" childLayout="center"  width="100%" height="70px">
+                        <control name="label" id="yourBidding" width="299px" x="227" y="70" text="0" height="50px" font="aurulent-sans-16.fnt"/>
+                    </panel>
+                    <panel id="btnPanel" childLayout="center" width="100%" height="20px">
+                        <control name="button" id="btnClear" childLayout="center" width="50px" label="Clear" height="20px"align="center">
+                            <interact onClick="btnClear()"/>
+                        </control>
+                    </panel>
+                    <panel id="GPanel9" childLayout="horizontal" width="100%" height="60px">
+                        <control name="button" id="btn200" childLayout="center" width="110px" label="+ 200" height="50px">
+                            <interact onClick="btnAddPressed(200)"/>
+                        </control>
+                        <panel id="GPanel10" childLayout="absolute" width="10px" height="30%"/>
+                        <control name="button" id="btn50" childLayout="center" width="110px" label="+ 50" height="50px">
+                            <interact onClick="btnAddPressed(50)"/>
+                        </control>
+                        <panel id="GPanel11" childLayout="absolute" width="10px" height="30%"/>
+                        <control name="button" id="btn10" childLayout="center" width="110px" label="+ 10" height="50px">
+                            <interact onClick="btnAddPressed(10)"/>
+                        </control>
+                        <panel id="GPanel12" childLayout="absolute" width="10px" height="30%"/>
+                        <control name="button" id="btn1" childLayout="center" width="110px" label="+ 1" height="50px">
+                            <interact onClick="btnAddPressed(1)"/>
+                        </control>
+                    </panel>
+                    <panel id="GPanel13" width="100%" height="5px"/>
+                    <panel id="GPanel13" childLayout="vertical" width="100%" height="172px">
+                        <image id="BtnBid" filename="Materials/Images/Bid.png" width="250px" align="center" height="80px" childLayout="overlay">
+                            <effect>
+                                <onStartScreen name="hide" targetElement="BtnBidHover"></onStartScreen>
+                                <onStartHover name="show" targetElement="BtnBidHover"></onStartHover>
+                                <onEndHover name="hide" targetElement="BtnBidHover"></onEndHover>
+                            </effect>
+                            <image id="BtnBidHover" filename="Materials/Images/BidHover.png"/>
+                            <interact onClick="bidBtn()"/>
+                        </image>
+                        <panel id="GPanel15" childLayout="absolute" width="50%" height="5px"/>
+                        <image id="BtnFold" filename="Materials/Images/Fold.png" width="250px" align="center" height="80px" childLayout="overlay">
+                            <effect>
+                                <onStartScreen name="hide" targetElement="BtnFoldHover"></onStartScreen>
+                                <onStartHover name="show" targetElement="BtnFoldHover"></onStartHover>
+                                <onEndHover name="hide" targetElement="BtnFoldHover"></onEndHover>
+                            </effect>
+                            <image id="BtnFoldHover" filename="Materials/Images/FoldHover.png"/>
+                            <interact onClick="foldBtn()"/>
+                        </image>
+                    </panel>
+                </panel>
+            </panel>
+        </layer>
+        
+        //Jailed Person
+        <layer id="Jail" childLayout="center">
+            <panel id="jailedPanel" childLayout="horizontal" width="919px" style="nifty-panel-simple" height="525px" visible="false">
+                <panel id="GPanel1" childLayout="center" width="50%" x="315" y="149" height="100%">
+                    <image id="jailImg" filename="Materials/Images/Jail.jpg" width="350px" height="350px"/>
+                </panel>
+                <panel id="GPanel2" childLayout="vertical" width="50%" height="100%">
+                    <panel id="GPanel3" childLayout="absolute" width="435px" height="74px"/>
+                    <image id="rollDiceImg" filename="Materials/Images/RollDice.png" width="250px" align="center" height="80px" childLayout="overlay">
+                        <effect>
+                            <onStartScreen name="hide" targetElement="BtnRollDiceHover"></onStartScreen>
+                            <onStartHover name="show" targetElement="BtnRollDiceHover"></onStartHover>
+                            <onEndHover name="hide" targetElement="BtnRollDiceHover"></onEndHover>
+                        </effect>
+                        <image id="BtnRollDiceHover" filename="Materials/Images/RollDiceHover.png"/>
+                        <interact onClick="jailRollBtn()"/>
+                    </image>
+                    <panel id="GPanel4" childLayout="absolute" width="438px" height="63px"/>
+                    <image id="BtnPayJail" filename="Materials/Images/JailPay.png" width="250px" align="center" height="80px" childLayout="overlay">
+                        <effect>
+                            <onStartScreen name="hide" targetElement="BtnPayJailHover"></onStartScreen>
+                            <onStartHover name="show" targetElement="BtnPayJailHover"></onStartHover>
+                            <onEndHover name="hide" targetElement="BtnPayJailHover"></onEndHover>
+                        </effect>
+                        <image id="BtnPayJailHover" filename="Materials/Images/JailPayHover.png"/>
+                        <interact onClick="jailPayBtn()"/>
+                    </image>
+                    <panel id="GPanel5" childLayout="absolute" width="434px" height="63px"/>
+                    <image id="BtnCardJail" filename="Materials/Images/UseCard.png" width="250px" align="center" height="80px" childLayout="overlay">
+                        <effect>
+                            <onStartScreen name="hide" targetElement="BtnCardJailHover"></onStartScreen>
+                            <onStartHover name="show" targetElement="BtnCardJailHover"></onStartHover>
+                            <onEndHover name="hide" targetElement="BtnCardJailHover"></onEndHover>
+                        </effect>
+                        <image id="BtnCardJailHover" filename="Materials/Images/UseCardHover.png"/>
+                        <interact onClick="jailCardBtn()"/>
+                    </image>
+                </panel>
+            </panel>
+        </layer>
+        //Buying Property
+        <layer id="BuyLayer" childLayout="center">
+            <panel id="buyPanel" childLayout="horizontal" width="870px" style="nifty-panel-simple" height="497px" visible="false">
+                <panel id="GPanel1" childLayout="overlay" width="50%" height="100%">
+                    <image id="buyingPropImg" width="31%" height="30%"/>
+                </panel>
+                <panel id="GPanel2" childLayout="vertical" width="50%" height="100%">
+                    <panel id="GPanel3" childLayout="absolute" width="422px" x="191" y="86" height="44px"/>
+                    <image id="propPriceImg" width="250px" align="center" height="80px"/>
+                    <panel id="GPanel4" childLayout="absolute" width="429px" height="62px"/>
+                    <image id="btnBuy" filename="Materials/Images/Buy.png" width="250px" align="center" height="80px" childLayout="overlay">
+                        <effect>
+                            <onStartScreen name="hide" targetElement="BtnBuyHover"></onStartScreen>
+                            <onStartHover name="show" targetElement="BtnBuyHover"></onStartHover>
+                            <onEndHover name="hide" targetElement="BtnBuyHover"></onEndHover>
+                        </effect>
+                        <image id="BtnBuyHover" filename="Materials/Images/BuyHover.png"/>
+                        <interact onClick="buyBtn()"/>
+                    </image>
+                    <panel id="GPanel5" childLayout="absolute" width="421px" height="86px"/>
+                    <image id="auctionBtn" filename="Materials/Images/Pass.png" width="250px" align="center" height="80px" childLayout="overlay">
+                        <effect>
+                            <onStartScreen name="hide" targetElement="BtnAucHover"></onStartScreen>
+                            <onStartHover name="show" targetElement="BtnAucHover"></onStartHover>
+                            <onEndHover name="hide" targetElement="BtnAucHover"></onEndHover>
+                        </effect>
+                        <image id="BtnAucHover" filename="Materials/Images/PassHover.png"/>
+                        <interact onClick="auctionBtn()"/>
+                    </image>
+                </panel>
+            </panel>
+        </layer>
+        
+        //Hotkeys
+        <layer id="Hotkeys" childLayout="center">
+            <panel id="PanelHotKeys" childLayout="vertical" width="373px" x="790" y="269" style="nifty-panel-simple" height="533px" visible="false" backgroundColor="#000000">
+                <panel id="GPanel1" childLayout="absolute" width="355px" height="42px"/>
+                <control name="label" id="GLabel0" width="361px" text="Spacebar: Roll Dice" height="53px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                <panel id="GPanel1" childLayout="absolute" width="355px" height="42px"/>
+                <control name="label" id="GLabel0" width="361px" text="Tab: End Turn" height="53px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                <panel id="GPanel1" childLayout="absolute" width="355px" height="42px"/>
+                <control name="label" id="GLabel0" width="361px" text="C: Toggle Camera View" height="53px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                <panel id="GPanel1" childLayout="absolute" width="355px" height="42px"/>
+                <control name="label" id="GLabel0" width="361px" text="Up Key: Next Property View" height="53px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+                <panel id="GPanel1" childLayout="absolute" width="355px" height="42px"/>
+                <control name="label" id="GLabel0" width="361px" text="Down Key: Previous Property View" height="53px" font="Interface/Fonts/TimesNewRoman.fnt"/>
+            </panel>
+        </layer>
+    </screen>
+</nifty>
